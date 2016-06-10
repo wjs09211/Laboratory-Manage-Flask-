@@ -27,7 +27,6 @@ class User(flask_login.UserMixin):
         self.id = user_id
         self.account = account
 
-
 @login_manager.user_loader
 def user_loader(user_id):
     cur = con.cursor()
