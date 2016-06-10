@@ -1,0 +1,109 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+        <script src="/static/jquery-1.12.2.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+        <script src="static/bootstrap/js/bootstrap.min.js"></script>
+        <link href="static/index.css" rel="stylesheet">
+        <script src="static/jquery-1.12.2.min.js"></script>
+        <script src="static/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="static/assets/css/main.css" />
+    
+    </head>
+    <body style="padding:100px;">
+        {% include 'navbar.html' %}
+        {% if income_err %}
+            <center><p style="color:red;">收入輸入錯誤<p></center>
+        {% endif %}
+        {% if outlay_err %}
+            <center><p style="color:red;">支出輸入錯誤<p></center>
+        {% endif %}
+        {% if input_err %}
+            <center><p style="color:red;">收入和支出不能同時輸入<p></center>
+        {% endif %}
+        <table>
+            <thead>
+                <tr>
+                    <th>名稱</th>
+                    <th>內容</th>
+                    <th>收入</th>
+                    <th>支出</th>
+                    <th>時間</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in ret %}
+                <tr>
+                    <td>{{item[0]}}</td>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>{{item[3]}}</td>
+                    <td>{{item[4]}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <h3 align="right" style="padding-right: 100px;">去年餘額<u>10000</u>  目前餘額<u>{{money}}</u></h3>
+
+        <center> <button id="button">填寫</button> </center>
+        <div class="toggler" id="effect" style="display: none;">
+            <form class="form-signin" action='balance.html' method='POST'>
+                <h2 class="form-signin-heading">Payments</h2>
+                <table>
+                    <tr>
+                        <td><label for="name" >項目名稱</label></td>
+                        <td><input type="text" name='name' id='name'  placeholder="Name" required autofocus></td>
+                    </tr>
+                    <tr>
+                        <td><label for="content">內容</label></td>
+                        <td><input type="text" name='content' id='content' placeholder="Content"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="income">收入金額</label></td>
+                        <td><input type="text" name='income' id='income' placeholder="income" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="outlay">支出金額</label></td>
+                        <td><input type="text" name='outlay' id='outlay' placeholder="outlay" value="0"></td>
+                    </tr>
+                </table>
+                <button class="btn btn-block" type="submit">提交</button>
+            </form>
+        </div>
+
+        <script>
+            $(function() {
+                // run the currently selected effect
+                function runEffect() {
+                    // get effect type from
+                    var selectedEffect = "blind";
+
+                    // most effect types need no options passed by default
+                    var options = {};
+
+                    // run the effect
+                    $( "#effect" ).toggle( selectedEffect, options, 500 );
+                };
+                var open = false;
+                // set effect from select menu value
+                $( "#button" ).click(function() {
+                    runEffect();
+                    if(!open){
+                        $(this).text("關閉");
+                        open = true;
+                    }
+                    else{
+                        $(this).text("填寫");
+                        open = false;
+                    }
+                });
+              });
+        </script>
+    </body>
+</html>

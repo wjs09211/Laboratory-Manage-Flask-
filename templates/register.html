@@ -1,0 +1,40 @@
+<html>
+    <head>
+    	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    	<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+		<script src="static/jquery-1.12.2.min.js"></script>
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="static/bootstrap/js/bootstrap.min.js"></script>
+		<link href="static/register.css" rel="stylesheet">
+        <link rel="stylesheet" href="static/assets/css/main.css" />
+	</head>
+
+    <body style="padding: 100px;">
+    {% include 'navbar.html' %}
+      	<form class="form-signin" action='register.html' method='POST'>
+        	<h2 class="form-signin-heading">註冊帳號</h2>
+        	<input type="text" name='account' id='account' class="form-control" placeholder="Account" required autofocus>
+        	<input type="password" name='pw' id='pw' class="form-control" placeholder="Password" required>
+        	<input type='text' name='name' id='name' class="form-control" placeholder='name'></input>
+			<input type='text' name='email' id='email' class="form-control" placeholder='email'></input>
+        	<button class="btn btn-block" type="submit" style="margin-top: 10px;">確定</button>
+      		{% if acc_err %}
+				<center><p style="color:red;">帳號錯誤，只限英文或數字，至少4個字<p></center>
+			{% endif %}
+      		{% if pwd_err %}
+				<center><p style="color:red;">密碼錯誤，只限英文或數字，至少4個字<p></center>
+			{% endif %}
+      		{% if name_err %}
+				<center><p style="color:red;">名子錯誤，只限英文與數字<p></center>
+			{% endif %}
+      		{% if email_err %}
+				<center><p style="color:red;">信箱格式錯誤<p></center>
+			{% endif %}			
+      	</form>
+
+    </body>
+
+</html>

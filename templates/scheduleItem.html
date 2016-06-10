@@ -1,0 +1,107 @@
+﻿<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+            <link rel="stylesheet" href="static/scheduleItem/skel.css" />
+			<link rel="stylesheet" href="static/scheduleItem/style.css" />
+			<link rel="stylesheet" href="static/scheduleItem/style-wide.css" />
+        <script src="static/jquery-1.12.2.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+        <script src="static/bootstrap/js/bootstrap.min.js"></script>
+        <script src="static/jquery-ui.min.js"></script>
+        <title>show</title>
+
+        <style>
+        table {
+            color:black;
+            border: 2px solid white;
+        }
+       td {
+            padding-top:5px;
+            line-height: normal;
+            margin-left:auto; 
+            margin-right:auto;
+        }
+     
+   p {
+   font-family:courier;color:black; word-break: break-all;margin-bottom:5px;margin-left:0px;margin-right:0px;
+  }
+  .paragraph1 {
+    font-size: 30px;padding: 0 15px;color:white;text-align:left;
+  }
+   .paragraph2 {
+    font-size: 30px;color:white;text-align:center;padding-top:10px;
+    padding-bottom: 20px;
+
+  }
+    .paragraph3 {
+    font-size: 20px;color:black;text-align:center;font-weight:bold;  
+
+  }
+            div
+            {}
+            .box
+            {
+                background: #FFF;
+                text-align: center;
+                border-radius: 0px 0px 6px 6px;
+                padding: 10px;
+
+            }
+            hr{
+                border:2px;
+                border-top: solid 1px #aaaaaa;
+                margin-top: 0px;
+                margin-bottom: 20px;
+                width: 80%
+            }
+            .4u
+            {
+                padding: 30px;
+            }
+        </style>
+
+    </head>
+    <body style="background-color:#3A3C66; width:100%; height: 400px;">
+       <!-- <p class="paragraph1">會議資訊</p> -->
+	
+        <p class="paragraph2">{{ ret[0] }}</p>
+        		<div id="extra">
+
+							<div class="row no-collapse-1">
+								<section class="4u" style="width: 30%"> 
+									<div class="box">
+                                        <p class="paragraph3">內容</p>
+                                        <hr/>
+										<p style="color:#636363">{{ ret[1] }}</p>
+										
+								</section>
+								<section class="4u" style="width: 30%">
+									<div class="box">
+                                        <p class="paragraph3">資訊</p>
+                                        <hr/>
+										<p>時間</p>
+                                        <p style="color:#636363">{{ ret[3] }}~</p>
+                                        <p style="color:#636363">{{ ret[4] }}</p>
+                                        <p>地點</p>
+                                        <p style="color:#636363">{{ ret[2] }}</p>
+										
+								</section>
+								<section class="4u" style="width: 30%"> 
+									<div class="box">
+                                        <p class="paragraph3">成員</p>
+                                        <hr/>
+                                        <p>主辦人</p>
+                                        <p style="color:#636363">{{ ret[6] }}</p>
+                                        <p>參與人</p>		
+                                        <p style="color:#636363">{{ ret[5] }}</p>
+								</section>
+							</div>
+
+      
+	</body>
+</html>

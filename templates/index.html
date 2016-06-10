@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+        <script src="static/jquery-1.12.2.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+        <script src="static/bootstrap/js/bootstrap.min.js"></script>
+        <link href="static/index.css" rel="stylesheet">
+        <link href="static/login.css" rel="stylesheet">
+		<link rel="stylesheet" href="static/assets/css/main.css" />
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        
+        <!-- Page Wrapper -->
+            <div id="page-wrapper">
+                <!-- Banner -->
+                    <section id="banner">
+                        <div class="inner">
+                            <div class="logo"><span class="icon fa-diamond"></span></div>
+							{% if current_user.is_authenticated %}
+								<h2>HI {{ current_user.account }} !</h2>
+							{% else %}
+								<h2>laboratory manage system</h2>
+							{% endif %}
+                            <p>Welcome to laboratory manage system</p>
+                            {% if not current_user.is_authenticated %}
+                                <a style="padding-top: 10px;"class="special" href="login.html">Login in</a>
+                                <a class="special" href="register.html">Register</a>
+                            {% endif %}
+                        </div>
+                    </section>
+
+                <!-- Wrapper -->
+                    <section id="wrapper">
+
+                        <!-- 會議排程 -->
+                            <section id="one" class="wrapper spotlight style1">
+                                <div class="inner">
+                                    <a href="meetingSchedule.html" class="image"><img src="static/images/schedular.png" alt="" /></a>
+                                    <div class="content">
+                                        <h2 class="major">會議排程</h2>
+                                        <p>隨著資訊化的時代腳步，許多人已從手寫的紙本行事曆改成使用數位電子的行事曆，電子行事曆除了能更方便編輯與紀錄行程之外，若能善用其中所提供的功能，可以讓您在生活中或工作上的排程更加便利，共用彼此的行程資訊，並透過其中排定會議的功能，更快速地安排開會時間，促進工作上的行政效率。</p>
+                                        <a href="meetingSchedule.html" class="special">Learn more</a>
+                                    </div>
+                                </div>
+                            </section>
+
+                        <!-- 器材管理 -->
+                            <section id="two" class="wrapper alt spotlight style2">
+                                <div class="inner">
+                                    <a href="equip.html" class="image"><img src="static/images/equip.png" alt="" /></a>
+                                    <div class="content">
+                                        <h2 class="major">器材管理</h2>
+                                        <p>容易上手的器材管理系統，許多器材出入的實驗室環境，替你管理許多器材的租借事宜，並自動化統計器材保存期限，紀錄器材使用情況，掌握所有實驗室器材動向。</p>
+                                        <a href="equip.html" class="special">Learn more</a>
+                                    </div>
+                                </div>
+                            </section>
+
+                        <!-- 收支管理 -->
+                            <section id="three" class="wrapper spotlight style3">
+                                <div class="inner">
+                                    <a href="balance.html" class="image"><img src="static/images/1465579859_Purse.png" alt="" /></a>
+                                    <div class="content">
+                                        <h2 class="major">收支管理</h2>
+                                        <p>簡單易用的記帳功能適合實驗室使用，只要每天花一點時間記錄， 即會自動幫您統計所有記錄，讓你可以輕鬆方便的管理實驗是帳務，設立剩餘金額以避免超支。</p>
+                                        <a href="balance.html" class="special">Learn more</a>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <!-- 論文管理 -->
+                            <section id="two" class="wrapper alt spotlight style2">
+                                <div class="inner">
+                                    <a href="paper.html" class="image"><img src="static/images/paper.png" alt="" /></a>
+                                    <div class="content">
+                                        <h2 class="major">論文管理</h2>
+                                        <p>有了論文保存功能，您可以隨時隨地從安全的雲端儲存空間存取檔案，還能備份相片、簡報等內容，支援多種檔案格式txt, pdf, png, jpg, jpeg, gif, doc, docx, rar, zip, ppt, pptx，方便使用者保存論文資料。</p>
+                                        <a href="paper.html" class="special">Learn more</a>
+                                    </div>
+                                </div>
+                            </section>
+
+            </div>
+
+            <!-- Scripts -->
+        <script src="static/assets/js/skel.min.js"></script>
+        <script src="static/assets/js/jquery.min.js"></script>
+        <script src="static/assets/js/jquery.scrollex.min.js"></script>
+        <script src="static/assets/js/util.js"></script>
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="static/assets/js/main.js"></script>
+    </body>
+</html>

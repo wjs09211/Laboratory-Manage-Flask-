@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+        <script src="static/jquery-1.12.2.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+        <script src="static/bootstrap/js/bootstrap.min.js"></script>
+        <!-- datepicker -->
+        <script src="static/jquery-ui.min.js"></script>
+        
+        <link href="static/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <script src="static/datepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="static/datepicker/bootstrap-datetimepicker.zh-TW.js"></script>
+        
+        <!--<link rel="stylesheet" href="static/assets/css/main.css" />-->
+        <link href='static/meetingSchedule.css' rel='stylesheet' />
+    </head>
+    <body style="padding:100px; font-family: "Source Sans Pro", Helvetica, sans-serif;">
+        {% include 'navbar.html' %}
+        
+
+        <table class="mytable" style="color: #ffffff">
+            <thead>
+                <tr>
+                    <th>器材名稱</th>
+                    <th>狀態</th>
+                    <th>購買時間</th>
+                    <th>報廢時間</th>
+                    <th>剩餘天數</th>
+                    <th>保管者</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in ret %}
+                <tr>
+                    <td>{{item[0]}}</td>
+                    <td>{{item[1]}}</td>
+                    <td>{{item[2]}}</td>
+                    <td>{{item[3]}}</td>
+                    <td>{{days_list[loop.index - 1]}}</td>
+                    <td>{{item[4]}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <center> <button class="mybutton" id="button">填寫</button> </center>
+        <div class="toggler" id="effect" style="display: none;">
+            <form action='equip.html' method='POST'>
+                <h2 style="color: #ffffff"class="form-signin-heading">器材填寫</h2>
+                <table class="mytable">
+                    <tr>
+                        <td><label for="name">器材名稱</label></td>
+                        <td><input type="text" name='name' id='name' required autofocus></td>         
+                    </tr>
+                    <tr>
+                        <td><label for="state">器材狀態</label></td>
+                        <td><input type="text" name='state' id='state'></td>         
+                    </tr>
+                    <tr>
+                        <td><label for="keeper">保管者</label></td>
+                        <td><input type="text" name='keeper' id='keeper' required></td>         
+                    </tr>
+                    <tr>
+                        <td><label for="buy_time">購買時間</label></td>
+                        <td><input type="text" name="buy_time" id="buy_time" data-date-format="yyyy-mm-dd" required></td>         
+                    </tr>
+                    <tr>
+                        <td><label for="end_time">報廢時間</label></td>
+                        <td><input type="text" name="end_time" id="end_time" data-date-format="yyyy-mm-dd" required></td>         
+                    </tr>
+                </table>
+                <button class="btn btn-block mybutton" type="submit">提交</button>
+            </form>
+        <div>
+        <script>
+            $('#buy_time').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $('#end_time').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+            $(function() {
+                // run the currently selected effect
+                function runEffect() {
+                    // get effect type from
+                    var selectedEffect = "blind";
+
+                    // most effect types need no options passed by default
+                    var options = {};
+
+                    // run the effect
+                    $( "#effect" ).toggle( selectedEffect, options, 500 );
+                };
+                var open = false;
+                // set effect from select menu value
+                $( "#button" ).click(function() {
+                    runEffect();
+                    if(!open){
+                        $(this).text("關閉");
+                        open = true;
+                    }
+                    else{
+                        $(this).text("填寫");
+                        open = false;
+                    }
+                });
+              });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+        <script src="static/jquery-1.12.2.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+        <script src="static/bootstrap/js/bootstrap.min.js"></script>
+        <script src="static/jquery-ui.min.js"></script>
+        <!-- datepicker -->
+       
+        <link href="static/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <script src="static/datepicker/bootstrap-datetimepicker.min.js"></script>
+        <script src="static/datepicker/bootstrap-datetimepicker.zh-TW.js"></script>
+
+        <link href='static/Calendar/fullcalendar.css' rel='stylesheet' />
+        <link href='static/Calendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+        <script src='static/Calendar/moment.min.js'></script>
+        <script src='static/Calendar/fullcalendar.min.js'></script>
+        <!--<link rel="stylesheet" href="static/assets/css/main.css" />-->
+        <link href='static/meetingSchedule.css' rel='stylesheet' />
+        
+    </head>
+    <script>
+    $(document).ready(function() {
+        
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,basicWeek,basicDay'
+            },
+            defaultDate: '{{ now }}',
+            editable: false,
+            eventLimit: true, // allow "more" link when too many events
+            events: {{ data|tojson }},
+            eventClick: function(event) {
+                window.open("scheduleItem.html?id=" + event.id, 'show', 'width=900,height=800');
+                console.log(event.id);
+                return false;
+            }
+        });
+        
+    });
+    </script>
+
+    <body style="padding:100px; font-family: "Source Sans Pro", Helvetica, sans-serif;">
+        {% include 'navbar.html' %}
+
+        <div id='calendar'></div>
+
+        <center> <button class="mybutton">填寫</button> </center>
+        <div class="toggler" id="effect" style="display: none;">
+            <form action='meetingSchedule.html' method='POST'>
+                <h2 style="color: #ffffff">會議</h2>
+                <table class="mytable">
+                    <tr>
+                        <td><label for="name">會議名稱</label></td>
+                        <td><input type="text" name='name' id='name' required autofocus></td>         
+                    </tr>
+                    <tr>
+                        <td><label for="content">會議內容</label></td>
+                        <td><textarea rows="4" name='content' id='content'></textarea></td>         
+                    </tr>
+                    <tr>
+                        <td><label for="location">會議地點</label></td>
+                        <td><input type="text" name='location' id='location'></td>         
+                    </tr>
+                    <tr>
+                        <td><label for="buy_time">開始時間</label></td>
+                        <td><input type="text" name="start_time" id="start_time" data-date-format="yyyy-mm-dd hh:ii" required></td>
+                    </tr>
+                    <tr>
+                        <td><label for="end_time">結束時間</label></td>
+                        <td><input type="text" name="end_time" id="end_time" data-date-format="yyyy-mm-dd hh:ii" required></td>         
+                    </tr>
+                    <tr>
+                        <td><label for="participants">參與者</label></td>
+                        <td><input type="text" name='participants' id='participants' required></td>         
+                    </tr>
+                    <tr>
+                        <td><label for="keeper">發起人</label></td>
+                        <td><input type="text" name='keeper' id='keeper' required></td>         
+                    </tr>
+                </table>
+                <button class="btn btn-block mybutton" type="submit">提交</button>
+            </form>
+        <div>
+        <script>
+            $('#start_time').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1
+            });
+            $('#end_time').datetimepicker({
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                forceParse: 0,
+                showMeridian: 1
+            });
+            $(function() {
+                // run the currently selected effect
+                function runEffect() {
+                    // get effect type from
+                    var selectedEffect = "blind";
+
+                    // most effect types need no options passed by default
+                    var options = {};
+
+                    // run the effect
+                    $( "#effect" ).toggle( selectedEffect, options, 500 );
+                };
+                var open = false;
+                // set effect from select menu value
+                $( ".mybutton" ).click(function() {
+                    runEffect();
+                    if(!open){
+                        $(this).text("關閉");
+                        open = true;
+                    }
+                    else{
+                        $(this).text("填寫");
+                        open = false;
+                    }
+                });
+              });
+        </script>
+    </body>
+</html>

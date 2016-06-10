@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="static/bootstrap/css/bootstrap-theme.min.css">
+        <script src="static/jquery-1.12.2.min.js"></script>
+            <!-- Latest compiled and minified JavaScript -->
+        <script src="static/bootstrap/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/static/paper.css">
+        <script src="static/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="static/assets/css/main.css" />
+    </head>
+    <body style="padding:100px;">
+        {% include 'navbar.html' %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th class="col-lg-2">檔案名稱</th>
+                    <th class="col-lg-1">下載</th>
+                    <th class="col-lg-2">上傳者</th>
+                    <th class="col-lg-7">上傳時間</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for item in ret %}
+                <tr>
+                    <td>{{item[0]}}</td>
+                    <td><a href="{{item[1]}}">下載</a></td>
+                    <td>{{item[3]}}</td>
+                    <td>{{item[2]}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <button id="button">上傳</button>
+        <div class="toggler" id="effect" style="display: none;">
+                <p style="margin-top: 10px; margin-left: 10px;">支援上傳的檔案類型:</p>
+                <p style="margin-left: 10px;">txt, pdf, png, jpg, jpeg, gif, doc, docx, rar, zip, ppt, pptx</p>
+                <form class="form-inline" action='paper.html' method='POST' enctype="multipart/form-data">
+                    <div class="input-group">
+                    <span class="input-group-btn">
+                        <span class="btn btn-file">
+                            Browse… <input name="upload_file" id="upload_file" type="file">
+                        </span>
+                    </span>
+                    <input type="text" readonly="">
+                    </div>
+                <button  type="submit">upload</button>
+                </form>
+        </div>
+    <script type="text/javascript" src="static/paper.js"></script>
+
+    </body>
+</html>
